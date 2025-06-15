@@ -1,3 +1,70 @@
+# ☁️ AZ-900 Notes
+
+## ✅ Definition
+
+> **Cloud computing** is the **delivery of computing services over the internet**.
+
+---
+
+## 🧱 Cloud Services Include:
+
+- Virtual Machines (VMs)
+- Storage
+- Databases
+- Networking
+- Internet of Things (IoT)
+- Machine Learning (ML)
+- Artificial Intelligence (AI)
+
+---
+
+## ⚡ Key Benefit
+
+- **Scalable on demand**  
+  No need to build a new datacenter — cloud lets you **expand your IT infrastructure instantly**.
+
+---
+
+## 🧠 Why It Matters
+
+Cloud computing:
+- Removes dependency on physical infrastructure
+- Provides flexible access to modern IT services
+- Powers fast deployment and innovation
+
+# 🛡 AZ-900 – Shared Responsibility Model
+
+## ✅ What is It?
+
+A **security model** that defines who (you vs. the cloud provider) is responsible for what in the cloud.
+
+In a **traditional datacenter**, your company is responsible for everything.  
+In the **cloud**, responsibility is **shared** depending on the **service model** (IaaS, PaaS, SaaS).
+
+---
+
+## 🔄 Core Concept
+
+| Responsibility           | Consumer (You)                              | Cloud Provider                        |
+|--------------------------|----------------------------------------------|----------------------------------------|
+| Data & Information       | ✅ Always your responsibility                | ❌                                      |
+| Identity & Access        | ✅ You manage users, roles, devices          | ❌                                      |
+| Devices (PCs, phones)    | ✅ You secure endpoints                      | ❌                                      |
+| Physical datacenter      | ❌                                           | ✅ Always their responsibility         |
+| Physical network & hosts | ❌                                           | ✅                                      |
+
+---
+
+## ⚙️ Service Models & Responsibility
+
+| Model | Who manages what? |
+|-------|-------------------|
+| **IaaS** (Infrastructure as a Service) | You manage OS, apps, data. Provider handles physical infra. |
+| **PaaS** (Platform as a Service)       | You manage apps & data. Provider handles OS & runtime.       |
+| **SaaS** (Software as a Service)       | You manage only data & users. Provider handles everything else. |
+
+---
+
 When using a cloud provider, you’ll always be responsible for:
 
     The information and data stored in the cloud
@@ -17,8 +84,14 @@ Your service model will determine responsibility for things like:
     Applications
     Identity and infrastructure
 
+## 📌 Real Example
 
-# ☁️ AZ-900 Notes – Cloud Models
+| Scenario | Who is responsible? |
+|----------|---------------------|
+| SQL DB hosted by provider (PaaS) | Provider manages patching, **you** manage data & access |
+| SQL DB installed on VM (IaaS) | **You** manage everything: VM, SQL, patches, security |
+
+
 
 ## ✅ Definitions
 
@@ -31,15 +104,104 @@ Your service model will determine responsibility for things like:
 - [x] **Azure VMware Solution** – Allows you to run VMware workloads on Azure without refactoring.
 
 ---
+## ☁️ Cloud Deployment Models – Comparison Table
 
-## 🧾 Comparison Table
-
-| Feature                             | Public Cloud                   | Private Cloud                        | Hybrid Cloud                     |
-|-------------------------------------|---------------------------------|--------------------------------------|----------------------------------|
-| CapEx required?                     | ❌ No                           | ✅ Yes                               | 🟨 Partial                       |
-| Control over resources?             | ❌ Limited                      | ✅ Full                              | ✅ Configurable                  |
-| Fast provisioning?                 | ✅ Yes                          | 🟨 Sometimes                         | ✅ Yes (in public part)         |
-| Resource isolation?                | ❌ Shared infra                 | ✅ Isolated                          | ✅ Choice-based                 |
-| Best for?                          | Rapid scaling, lower cost       | Security, compliance, control       | Flexibility, hybrid strategy     |
+| **Public cloud**                                    | **Private cloud**                                                             | **Hybrid cloud**                                                |
+|------------------------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------|
+| No capital expenditures to scale up                  | Organizations have complete control over resources and security               | Provides the most flexibility                                   |
+| Applications can be quickly provisioned/deprovisioned| Data is not collocated with other organizations’ data                          | Organizations determine where to run their applications         |
+| Organizations pay only for what they use             | Hardware must be purchased for startup and maintenance                        | Organizations control security, compliance, or legal requirements |
+| Organizations don’t have complete control            | Organizations are responsible for hardware maintenance and updates            |                                                                |
 
 ---
+## ☁️ Additional Cloud Deployment Scenarios
+
+### 🔄 Multi-Cloud
+- Involves using **multiple public cloud providers** (e.g., Azure + AWS).
+- Common scenarios:
+  - Using different services from different providers.
+  - Migrating from one provider to another.
+- Requires managing **resources and security** across **multiple platforms**.
+
+### 🧭 Azure Arc
+- A **management platform** for hybrid and multi-cloud environments.
+- Works with:
+  - Public cloud (Azure)
+  - Private cloud (on-premises)
+  - Hybrid setups
+  - Multi-cloud (e.g., Azure + AWS)
+- Enables consistent **governance, configuration, and monitoring** across all environments.
+
+### 🧱 Azure VMware Solution
+- Lets you **run existing VMware workloads in Azure**.
+- Useful when:
+  - You're already using VMware in a private cloud.
+  - You want to **migrate** or **extend** to a public/hybrid cloud without refactoring.
+- Provides seamless **integration and scalability** into Azure.
+
+## ✅ CapEx vs OpEx
+
+| Expense Type | Description | Examples |
+|--------------|-------------|----------|
+| **CapEx (Capital Expenditure)** | One-time, upfront investments in physical assets | Buying servers, building a datacenter, company vehicles |
+| **OpEx (Operational Expenditure)** | Ongoing expenses for services/products consumed over time | Cloud subscriptions, software licenses, leasing hardware |
+
+---
+
+## ☁️ What is the Consumption-Based Model?
+
+- A **cloud pricing model** where you pay only for what you use.
+- No cost if you don’t consume any resources during a billing cycle.
+- Resources (compute, storage, networking) are **rented**, not owned.
+
+---
+
+## 💡 Benefits
+
+- [x] No upfront hardware costs
+- [x] No over-provisioning or waste
+- [x] Pay **more** only when usage increases
+- [x] Pay **less** or stop paying when usage drops
+- [x] Avoid datacenter capacity planning & delays
+
+---
+
+## 🏗 Traditional Datacenter vs. Cloud
+
+| Traditional Model (CapEx)                 | Cloud Model (OpEx)                     |
+|-----------------------------------        |----------------------------------------|
+| Estimate future capacity                  | Scale up/down based on actual need     |
+| Over/underprovision = wasted $ or outages | Pay only for what you use            |
+| Long lead time to expand capacity         | Instantly deploy or remove resources   |
+| Must manage power, cooling, hardware      | Provider handles all infra            |
+
+---
+
+## 🧠 Summary
+
+Cloud computing turns infrastructure into a **utility** — you rent compute/storage like you'd rent electricity or office space.
+
+- When you're done with a resource → **deallocate it**
+- Billing is **based on usage**
+- Lets you **focus on business**, not infrastructure
+
+---
+✅ Check Your Knowledge Answers
+
+1. What is cloud computing?
+✔️ Delivery of computing services over the internet.
+
+    This includes storage, compute, networking, AI, and more — all delivered as services.
+
+2. Which cloud model uses some datacenters focused on providing cloud services to anyone and some for a single customer?
+✔️ Hybrid cloud
+
+    Combines public (shared) and private (dedicated) cloud resources.
+
+3. According to the shared responsibility model, which cloud service type places the most responsibility on the customer?
+✔️ Infrastructure as a Service (IaaS)
+
+    You manage the OS, apps, runtime, etc. The provider only manages the physical infra and virtualization.
+
+
+
