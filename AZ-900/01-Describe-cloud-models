@@ -1,0 +1,45 @@
+When using a cloud provider, you’ll always be responsible for:
+
+    The information and data stored in the cloud
+    Devices that are allowed to connect to your cloud (cell phones, computers, and so on)
+    The accounts and identities of the people, services, and devices within your organization
+
+The cloud provider is always responsible for:
+
+    The physical datacenter
+    The physical network
+    The physical hosts
+
+Your service model will determine responsibility for things like:
+
+    Operating systems
+    Network controls
+    Applications
+    Identity and infrastructure
+
+
+# ☁️ AZ-900 Notes – Cloud Models
+
+## ✅ Definitions
+
+- [x] **Cloud model** – The deployment type of cloud resources (how and where they are delivered).
+- [x] **Private cloud** – Cloud services used by a **single organization**. Greater control, higher cost. Hosted on-site or in a dedicated off-site facility.
+- [x] **Public cloud** – Services offered by **third-party providers** over the internet, available to anyone. Most scalable and cost-effective.
+- [x] **Hybrid cloud** – Combines **private and public** cloud environments. Useful for burst traffic, security flexibility, and app placement decisions.
+- [x] **Multi-cloud** – Usage of **multiple public cloud providers** (e.g., Azure + AWS). Can be strategic or transitional.
+- [x] **Azure Arc** – Azure’s management solution for hybrid and multi-cloud environments. Helps manage servers, Kubernetes clusters, and apps across environments.
+- [x] **Azure VMware Solution** – Allows you to run VMware workloads on Azure without refactoring.
+
+---
+
+## 🧾 Comparison Table
+
+| Feature                             | Public Cloud                   | Private Cloud                        | Hybrid Cloud                     |
+|-------------------------------------|---------------------------------|--------------------------------------|----------------------------------|
+| CapEx required?                     | ❌ No                           | ✅ Yes                               | 🟨 Partial                       |
+| Control over resources?             | ❌ Limited                      | ✅ Full                              | ✅ Configurable                  |
+| Fast provisioning?                 | ✅ Yes                          | 🟨 Sometimes                         | ✅ Yes (in public part)         |
+| Resource isolation?                | ❌ Shared infra                 | ✅ Isolated                          | ✅ Choice-based                 |
+| Best for?                          | Rapid scaling, lower cost       | Security, compliance, control       | Flexibility, hybrid strategy     |
+
+---
