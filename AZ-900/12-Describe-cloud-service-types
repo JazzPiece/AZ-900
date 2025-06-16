@@ -39,4 +39,141 @@
 | Responsibility       | You handle OS, patches, updates, and app security |
 
 ---
+## 🔄 Shared Responsibility by Service Type
 
+| Responsibility                             | SaaS        | PaaS        | IaaS        | On-Prem     |
+|-------------------------------------------|-------------|-------------|-------------|-------------|
+| **Responsibility always retained by the customer** |||||
+| Information and data                       | ✅ Customer | ✅ Customer | ✅ Customer | ✅ Customer |
+| Devices (Mobile and PCs)                  | ✅ Customer | ✅ Customer | ✅ Customer | ✅ Customer |
+| Accounts and identities                    | ✅ Customer | ✅ Customer | ✅ Customer | ✅ Customer |
+
+| **Responsibility varies by type** |||||
+| Identity and directory infrastructure      | 🔁 Shared   | 🔁 Shared   | ✅ Customer | ✅ Customer |
+| Applications                               | ✅ Customer | 🔁 Shared   | ✅ Customer | ✅ Customer |
+| Network controls                           | ✅ Customer | 🔁 Shared   | ✅ Customer | ✅ Customer |
+| Operating system                           | ✅ Microsoft| ✅ Microsoft| ✅ Customer | ✅ Customer |
+
+| **Responsibility transfers to cloud provider** |||||
+| Physical hosts                             | ✅ Microsoft| ✅ Microsoft| ✅ Microsoft| ✅ Customer |
+| Physical network                           | ✅ Microsoft| ✅ Microsoft| ✅ Microsoft| ✅ Customer |
+| Physical datacenter                        | ✅ Microsoft| ✅ Microsoft| ✅ Microsoft| ✅ Customer |
+
+# 🧱 AZ-900 – Platform as a Service (PaaS)
+
+## ✅ What is PaaS?
+
+> Platform as a Service (PaaS) gives you a **preconfigured platform** to build and deploy apps — no hardware or OS to manage.
+
+You focus on:
+- Writing code
+- Managing your app
+- Storing your data
+
+The provider handles:
+- Infra
+- OS
+- Middleware
+- DB engines
+- Dev tools
+
+---
+
+## 🔄 Shared Responsibility (PaaS)
+
+| Layer                          | Managed By         |
+|--------------------------------|--------------------|
+| Physical infra, OS, DB engine  | ✅ Cloud provider   |
+| Application code & data        | ✅ You              |
+| Access, identity, some networking | 🔁 Shared (varies)  |
+
+---
+
+## 💡 Benefits of PaaS
+
+- No hardware/OS management
+- Prebuilt tools & frameworks
+- Easy scaling + high availability built-in
+- Lower maintenance overhead
+
+---
+
+## 📦 Common PaaS Use Cases
+
+| Scenario               | Description |
+|------------------------|-------------|
+| **Development framework** | Build apps with built-in SDKs, services, auto scaling |
+| **Analytics / BI**        | Mine data, analyze trends, forecast (e.g. Synapse, Power BI) |
+
+---
+
+## 🧠 Summary
+
+| Category         | PaaS |
+|------------------|------|
+| Control level     | Mid – you manage apps + data |
+| Responsibility    | Split (app = you, platform = provider) |
+| Ideal for         | Developers, agile teams, analytics platforms |
+
+---
+
+# 📦 AZ-900 – Software as a Service (SaaS)
+
+## ✅ What is SaaS?
+
+> **Software as a Service (SaaS)** delivers **fully managed applications** over the internet.  
+> You just sign in and use the app — no setup, patching, or infrastructure management.
+
+---
+
+## 💻 Common SaaS Examples
+
+- Outlook / Gmail (email)
+- Microsoft Teams / Slack (messaging)
+- QuickBooks / FreshBooks (finance)
+- Microsoft 365 / Google Workspace (productivity)
+
+---
+
+## 🔄 Shared Responsibility (SaaS)
+
+| Layer                          | Managed By         |
+|--------------------------------|--------------------|
+| App development, patching      | ✅ Provider         |
+| Physical infra, OS, middleware | ✅ Provider         |
+| Data you enter                 | ✅ You              |
+| Device and access security     | ✅ You              |
+
+---
+
+## ⚡ SaaS Characteristics
+
+| Feature            | Description |
+|--------------------|-------------|
+| **Least flexible** | You can’t change backend configs |
+| **Most ready-to-use** | Instant deployment, no infra to manage |
+| **Lowest technical burden** | Users need no coding or setup experience |
+| **Scales easily** | Add/remove users or features on demand |
+
+---
+
+## 🧠 Summary
+
+| Category         | SaaS |
+|------------------|------|
+| Control level     | 🔽 Low – provider manages almost everything |
+| Responsibility    | You handle data, identity, and device control |
+| Ideal for         | Businesses needing ready-to-use apps with no infra headaches |
+
+---
+✅ 1. Which cloud service type is most suited to a lift and shift migration from an on-premises datacenter to a cloud deployment?
+
+✔️ Infrastructure as a Service (IaaS)
+
+    You’re replicating your existing environment (VMs, storage, networks) without re-architecting it — perfect for IaaS.
+
+✅ 2. What type of cloud service type would a Finance and Expense tracking solution typically be in?
+
+✔️ Software as a Service (SaaS)
+
+    It's a complete, ready-to-use business app — no setup or backend management required.
