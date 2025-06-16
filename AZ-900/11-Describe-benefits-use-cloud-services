@@ -1,0 +1,47 @@
+## ✅ Key Concepts
+
+| Term              | Definition |
+|-------------------|------------|
+| **High Availability** | Ensures that services/apps remain accessible and operational during failures or disruptions. |
+| **Scalability**        | Ability to increase or decrease resources to meet demand. |
+
+---
+
+## ☁️ High Availability (HA)
+
+- Ensures your app or service is **available when needed**
+- Designed to handle **disruptions**, maintenance, or load spikes
+- Enforced through Azure **SLAs (Service Level Agreements)**
+
+---
+
+## 🚀 Scalability
+
+- **Scale up/down** based on actual usage
+- Supports cost-efficiency: pay for what you need
+- Two types:
+
+### 🔼 Vertical Scaling (Scale Up/Down)
+- Increase/decrease capacity of a **single resource**
+  - e.g., Add more CPU/RAM to a VM
+- Pros: Simple
+- Cons: Limited ceiling
+
+### 🔁 Horizontal Scaling (Scale Out/In)
+- Add/remove **instances of a resource**
+  - e.g., Add more VMs or containers
+- Pros: Great for web apps, APIs, microservices
+- Can be **manual or automatic**
+
+---
+
+## 🧠 Summary
+
+| Feature | High Availability | Scalability |
+|---------|-------------------|-------------|
+| Goal    | Maximize uptime   | Match resource supply to demand |
+| Example | Redundant VMs in different zones | Add/remove containers dynamically |
+| Benefit | User trust, reliability | Performance, cost-efficiency |
+
+---
+
