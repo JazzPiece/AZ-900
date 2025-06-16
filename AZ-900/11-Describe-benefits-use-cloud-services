@@ -44,4 +44,51 @@
 | Benefit | User trust, reliability | Performance, cost-efficiency |
 
 ---
+# 🔄 AZ-900 – Reliability and Predictability in the Cloud
 
+## ✅ Key Definitions
+
+| Term         | Meaning |
+|--------------|---------|
+| **Reliability** | The ability of a system to **recover from failures** and keep functioning. |
+| **Predictability** | The ability to **anticipate system performance and costs**, ensuring consistency and confidence. |
+
+---
+
+## 🔒 Reliability
+
+- Supported by the **decentralized design** of the cloud.
+- Resources can be deployed in **multiple regions** around the world.
+- Global redundancy = system resilience against **regional failures**.
+- Azure may **automatically reroute services** if a region fails.
+- It's one of the pillars of the **Azure Well-Architected Framework**.
+
+---
+
+## 📈 Predictability
+
+### 💡 Performance Predictability
+- Uses tools like:
+  - **Autoscaling** – Add/remove resources based on real-time load
+  - **Load Balancing** – Distribute traffic across servers/services
+  - **High Availability** – Ensures uptime across zones
+
+### 💰 Cost Predictability
+- Real-time usage tracking and forecasting
+- Tools like:
+  - **Azure Pricing Calculator**
+  - **TCO Calculator**
+  - **Azure Cost Management + Budgets**
+- Cloud analytics help **predict spend patterns** and optimize costs
+
+---
+
+## 🧠 Summary
+
+| Benefit | What It Enables |
+|---------|-----------------|
+| Reliability | Systems keep working through failures (global resilience) |
+| Performance Predictability | Users get consistent experience during scaling events |
+| Cost Predictability | Teams can estimate, monitor, and control cloud expenses |
+
+---
