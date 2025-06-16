@@ -1,0 +1,42 @@
+# 🖥 AZ-900 – Infrastructure as a Service (IaaS)
+
+## ✅ What is IaaS?
+
+> **Infrastructure as a Service** is the most flexible cloud service model.  
+> You're renting cloud infrastructure (VMs, networks, storage), and you're responsible for **everything above the physical layer**.
+
+---
+
+## 🔄 Shared Responsibility (IaaS)
+
+| Layer                          | Managed By |
+|-------------------------------|------------|
+| Physical hardware, datacenter | Cloud provider |
+| OS, apps, storage config      | ✅ You |
+| Network config, patching      | ✅ You |
+| Security, data protection     | ✅ You |
+
+---
+
+## 💡 Scenarios Where IaaS Is a Good Fit
+
+- **Lift-and-shift migrations**
+  - Move your on-prem apps to the cloud with minimal rework
+- **Testing and development**
+  - Spin up/down environments quickly using pre-configured images
+- **Full control needed**
+  - You want to manage custom OS, firewall settings, or backend services manually
+
+---
+
+## 🧠 Summary
+
+| Feature              | IaaS |
+|----------------------|------|
+| Control level        | 🔥 Highest – you manage most of the stack |
+| Use case flexibility | ✅ Ideal for dev/test, legacy apps, full control needs |
+| Cost control         | Depends on how efficiently you manage VMs and storage |
+| Responsibility       | You handle OS, patches, updates, and app security |
+
+---
+
