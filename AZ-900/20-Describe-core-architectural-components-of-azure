@@ -1,0 +1,236 @@
+
+# 🌐 AZ-900 – Azure Physical Infrastructure
+
+## 🏢 Core Concepts
+
+Azure infrastructure consists of:
+- **Physical infrastructure** (datacenters, regions, availability zones)
+- **Management infrastructure** (covered in the next unit)
+
+---
+
+## 🏬 Datacenters
+
+- Facilities with racks, power, cooling, and networking.
+- Grouped into **Regions** and **Availability Zones**.
+- You can’t deploy directly to a datacenter — deployments go to **regions**.
+
+---
+
+## 📍 Regions
+
+- A **region** = 1 or more datacenters in a geographic area.
+- Resources in a region are connected by **low-latency networks**.
+- Some services/features are **region-specific** (e.g., VM sizes).
+- Examples: West US, East US, East Asia.
+
+---
+
+## 🏛 Availability Zones (AZs)
+
+- **Physically separate** datacenters within a region.
+- Each zone has **independent power, cooling, and networking**.
+- If one zone goes down, others keep running.
+- AZs improve resiliency, especially for:
+  - VMs
+  - Managed disks
+  - Load balancers
+  - SQL databases
+
+### Types of AZ support:
+
+| Type                  | Description                            |
+|-----------------------|----------------------------------------|
+| Zonal services        | You deploy to a specific zone (e.g., VM) |
+| Zone-redundant        | Auto-replicated across zones (e.g., ZRS) |
+| Non-regional services | Always available regardless of region  |
+
+---
+
+## 🗺 Region Pairs
+
+- Most regions are **paired** with another ~300 miles away.
+- Helps for disaster recovery and **failover**.
+- Azure updates are rolled out **one region at a time**.
+- **Data stays in the same geography** for compliance.
+
+### Benefits:
+
+- Prioritized recovery of at least one region
+- Staggered updates
+- Legal/data residency compliance
+
+### Example Pairs:
+
+| Region A      | Region B     |
+|---------------|--------------|
+| West US       | East US      |
+| SE Asia       | East Asia    |
+
+🔸 Some pairings are **one-directional** (e.g., Brazil South → South Central US)
+
+---
+
+## 🏛 Sovereign Regions
+
+Isolated Azure instances for specific jurisdictions:
+
+| Region Type     | Description |
+|------------------|-------------|
+| **Azure Government** | For US Gov and DoD; run by screened US staff |
+| **China Azure**      | Managed by 21Vianet, not directly by Microsoft |
+
+---
+
+## 🧠 Summary
+
+| Component          | Description |
+|--------------------|-------------|
+| **Region**         | A group of datacenters in a geographic area |
+| **Availability Zone** | Physically separate locations within a region |
+| **Region Pair**    | Region + geographically distant backup region |
+| **Sovereign Region** | Isolated Azure instance for compliance needs |
+
+---
+# 🛠️ AZ-900 – Azure Management Infrastructure
+
+## 📦 Azure Resources and Resource Groups
+
+- A **resource** is any Azure service you create (VM, DB, storage, etc.)
+- A **resource group (RG)** is a logical container for related resources
+
+### Key Points
+
+- Every resource must be in **one** resource group
+- **Cannot nest** resource groups
+- Deleting a resource group deletes **all** contained resources
+- Assigning access at RG level applies to all resources inside
+
+### Use Cases
+
+- Group resources by environment (e.g., dev, test)
+- Group by access control needs
+- Simplifies provisioning and cleanup
+
+---
+
+## 💳 Azure Subscriptions
+
+- A **subscription** organizes **resource groups** and handles **billing and access**
+- Required to use Azure
+- Linked to an **Azure account** (identity in Microsoft Entra ID)
+
+### Subscription Boundaries
+
+| Type            | Purpose                                           |
+|------------------|--------------------------------------------------|
+| **Billing**       | Separate invoices per subscription               |
+| **Access control**| Apply RBAC and policies across RGs in a subscription |
+
+### Use Cases
+
+- Separate **dev/prod environments**
+- Map to **teams or departments**
+- Track **billing** for different projects
+
+---
+
+## 🧰 Azure Management Groups
+
+- Organize **multiple subscriptions** into one container
+- Policies and RBAC applied at MG level are **inherited** by all child subscriptions, RGs, and resources
+- Allows for **enterprise-wide** governance at scale
+
+### Examples
+
+- Apply policy: Restrict VM location to West US at MG level
+- Assign RBAC role once to give access across multiple subscriptions
+
+### Key Facts
+
+- Up to **10,000** MGs per directory
+- Up to **6 levels** of nesting (not including root or subscription)
+- Each MG or subscription can only have **one parent**
+
+---
+
+## 🧠 Hierarchy Overview
+
+Management Group
+└── Subscription
+└── Resource Group
+└── Resource
+
+
+Each layer inherits settings from the one above — great for centralized policy, access control, and billing management.
+
+
+# 🧪 AZ-900 – Exercise: Create an Azure Resource
+
+## 🎯 Goal
+
+Create a Virtual Machine (VM) using the Azure Portal and observe how related resources are grouped within a **resource group**.
+
+---
+
+## ✅ Task 1: Create a Virtual Machine
+
+Steps:
+
+1. Sign in to the [Azure Portal](https://portal.azure.com)
+2. Select: **Create a resource** → **Virtual Machine** → **Create**
+3. Fill in the **Basics** tab with the following:
+
+| Setting                 | Value                            |
+|--------------------------|----------------------------------|
+| Subscription            | Concierge Subscription           |
+| Resource group          | Select one starting with `learn` |
+| Virtual machine name    | `my-VM`                          |
+| Authentication type     | Password                         |
+| Username                | `azureuser`                      |
+| Password                | Enter a custom password          |
+| Public inbound ports    | None                             |
+
+> Leave all other settings as default.
+
+4. Click **Review and Create**
+5. Click **Create**
+6. Wait for **Deployment is complete**
+
+---
+
+## ✅ Task 2: Verify Resources Created
+
+1. Go to **Home** → **Resource groups**
+2. Select your **sandbox resource group** (starts with `learn`)
+3. Review the list of resources:
+   - Some (e.g., storage account, VNet) are sandbox defaults
+   - Others (e.g., VM, NIC, disk, NSG) were created with your VM
+
+Azure **auto-names and groups** related resources for clarity.
+
+---
+
+## 🧹 Clean Up
+
+- **No manual cleanup needed** – sandbox deletes resources automatically
+- In real projects:
+  - Delete individual resources **or**
+  - Delete the **entire resource group** to remove all
+
+---
+
+## 💡 Takeaway
+
+Creating a VM triggers the creation of **multiple dependent resources**.
+Azure automatically groups them under the same **resource group** for easier management and cleanup.
+
+
+How many resource groups can a resource be in at the same time?
+✅ One
+
+What happens to the resources within a resource group when an action or setting at the Resource Group level is applied?
+✅ The setting is applied to current and future resources.
+
+What Azure feature replicates resources across regions that are at least 300 miles away from each other?
+✅ Region pairs
