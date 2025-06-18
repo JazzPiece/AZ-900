@@ -1,0 +1,278 @@
+# 🖥️ AZ-900 – Azure Virtual Machines (VMs)
+
+## ✅ What is an Azure VM?
+
+A **virtual machine (VM)** is an IaaS compute resource that provides a virtualized server.  
+It gives you control over the OS, installed software, and hosting configuration — similar to managing a physical server.
+
+### 🧰 Key Features
+
+- Full control over the OS
+- Custom software support
+- Supports “lift and shift” from on-prem
+- Pay only for what you use (consumption model)
+
+---
+
+## 🚀 VM Images
+
+- VMs can be provisioned from **images**
+- Images are templates that include:
+  - OS
+  - Pre-installed software (e.g. Dev tools, Web servers)
+
+---
+
+## 📈 Scaling & High Availability
+
+### 🔁 Virtual Machine Scale Sets (VMSS)
+
+- Automatically deploy, scale, and manage **identical** VMs
+- Load balanced by default
+- Scales in/out automatically based on demand or schedule
+- Ideal for compute, big data, containers
+
+### 🧩 Virtual Machine Availability Sets
+
+- Improves **resiliency and uptime**
+- Protects against **single points of failure**
+- Uses:
+  - **Update domains**: Control which VMs update together
+  - **Fault domains**: Distribute VMs across power/network racks
+- No additional cost — you pay for the VM instances only
+
+---
+
+## 🧠 Common VM Use Cases
+
+- **Dev/Test Environments** – Quickly spin up or tear down setups
+- **Cloud Applications** – Deploy scalable, cloud-hosted apps
+- **Datacenter Extension** – Connect Azure VMs to on-prem network
+- **Disaster Recovery** – Use cloud VMs during on-prem failure
+- **Lift and Shift** – Move physical servers to cloud with minimal changes
+
+---
+
+## 🔧 VM Resource Configuration
+
+When provisioning a VM, you choose:
+
+| Component       | Example                                   |
+|------------------|--------------------------------------------|
+| **Size**         | Number of cores, RAM                      |
+| **Disks**        | HDD or SSD                                |
+| **Networking**   | VNet, public IP, ports                    |
+
+> You are responsible for patching, updates, and managing installed OS/software inside the VM.
+
+# 🛠️ AZ-900 – Exercise: Create an Azure VM and Install Nginx (CLI)
+
+## 🔧 Objective
+
+Use Azure CLI in Cloud Shell to:
+- Create a Linux VM (Ubuntu 22.04)
+- Use Custom Script Extension to install Nginx web server
+
+---
+
+## ☁️ Step 1: Create a Linux VM
+
+```bash
+az vm create \
+  --resource-group "[sandbox resource group name]" \
+  --name my-vm \
+  --public-ip-sku Standard \
+  --image Ubuntu2204 \
+  --admin-username azureuser \
+  --generate-ssh-keys
+
+
+
+📌 Generates an SSH key and deploys a VM named my-vm in the sandbox resource group.
+
+📦 Step 2: Install Nginx with Custom Script Extension
+bash
+Copy
+Edit
+az vm extension set \
+  --resource-group "[sandbox resource group name]" \
+  --vm-name my-vm \
+  --name customScript \
+  --publisher Microsoft.Azure.Extensions \
+  --version 2.1 \
+  --settings '{"fileUris":["https://raw.githubusercontent.com/MicrosoftDocs/mslearn-welcome-to-azure/master/configure-nginx.sh"]}' \
+  --protected-settings '{"commandToExecute": "./configure-nginx.sh"}'
+📌 Downloads and runs configure-nginx.sh which:
+
+Runs apt-get update
+
+Installs Nginx
+
+Updates /var/www/html/index.html with a welcome message including hostname
+
+Script:
+
+            #!/bin/bash
+
+            # Update apt cache.
+            sudo apt-get update
+            
+            #We need to add repo before installing nginx-core. Otherwise we get an error
+            sudo add-apt-repository main
+            sudo add-apt-repository universe
+            sudo add-apt-repository restricted
+            sudo add-apt-repository multiverse  
+            
+            # Install Nginx.
+            sudo apt-get install -y nginx
+            
+            # Set the home page.
+            echo "<html><body><h2>Welcome to Azure! My name is $(hostname).</h2></body></html>" | sudo tee -a /var/www/html/index.html
+
+
+
+💻 Azure Virtual Desktop (AVD)
+What it is:
+A cloud-based desktop and application virtualization service that lets users access a full Windows experience from any device, anywhere.
+
+🔐 Security
+Centralized identity management via Microsoft Entra ID
+
+Supports multi-factor authentication (MFA)
+
+Keeps data off local devices by running apps/desktops in the cloud
+
+Sessions are isolated, even in multi-user setups
+
+👥 Multi-Session Support
+Allows multiple users to share one VM using Windows 10/11 Enterprise Multi-Session
+
+More efficient than assigning one VM per user
+
+Better app compatibility and user experience than Windows Server RDS
+
+🌎 Access
+Works on Windows, macOS, Android, iOS, and modern browsers
+
+Ideal for remote work, secure BYOD setups, or centralized app management
+
+📦 Azure Containers
+What are Containers?
+A lightweight virtualization method to run multiple isolated apps on a single host.
+
+Unlike VMs, containers don’t require a full OS per instance.
+
+Fast to start, stop, scale, and recover.
+
+🆚 VMs vs. Containers
+Feature	Virtual Machines	Containers
+Virtualization	Full OS	App-level isolation
+Startup time	Minutes	Seconds
+Resource usage	High (entire OS per VM)	Lightweight
+Scalability	Slower	Fast and dynamic
+Flexibility	Full control over OS	Focused on app-level processes
+
+☁️ Azure Container Services
+1. Azure Container Instances (ACI)
+Easiest way to run containers in Azure
+
+No need to manage VMs or infrastructure
+
+Ideal for simple, isolated workloads
+
+2. Azure Container Apps
+PaaS solution for microservices-based apps
+
+Built-in autoscaling, load balancing, and revision management
+
+Best for long-running applications
+
+3. Azure Kubernetes Service (AKS)
+Orchestration platform for managing container fleets
+
+Automates deployment, scaling, and management of containerized apps
+
+Useful for complex, production-grade workloads
+
+🧩 Use Case – Microservices
+Split app into services like frontend, backend, and database
+
+Deploy each service as an independent container
+
+Update or scale parts of the app without touching the whole system
+
+ChatGPT said:
+Here’s a clean, concise summary of your AZ-900 Azure Functions section:
+
+⚡ Azure Functions
+What is it?
+Event-driven, serverless compute platform
+
+Code runs only in response to events (HTTP request, timer, queue message, etc.)
+
+No need to manage infrastructure like VMs or containers
+
+🌟 Key Benefits
+Auto-scales with demand
+
+Pay-per-use pricing (charged only for time code is running)
+
+Great for short, stateless tasks or Durable Functions for long-running workflows
+
+Supports multiple languages (C#, JavaScript, Python, etc.)
+
+🧠 Use Cases
+REST API backends
+
+Scheduled jobs (cron/timer)
+
+Real-time file processing (e.g., Azure Blob triggers)
+
+Integration with other Azure services (e.g., Cosmos DB, Service Bus)
+
+🏗️ Stateless vs. Stateful
+Mode	Description
+Stateless	Default mode, starts fresh on each event
+Stateful	Uses Durable Functions to maintain state across executions
+
+ChatGPT said:
+Here’s a clean summary of your AZ-900 – Azure Application Hosting Options:
+
+🖥️ Azure Application Hosting
+Options:
+VMs: Full control, manual scaling, infrastructure-heavy
+
+Containers: Lightweight, flexible, fast to deploy
+
+App Service: PaaS solution for hosting web apps, APIs, background jobs, mobile backends
+
+☁️ Azure App Service
+Managed platform for HTTP-based applications
+
+No infrastructure maintenance
+
+Supports:
+
+.NET, .NET Core, Java, Node.js, Python, PHP, Ruby
+
+Windows or Linux
+
+Continuous Deployment: GitHub, Azure DevOps, any Git repo
+
+Built-in scaling, load balancing, and high availability
+
+🔧 App Service Types
+Type	Use Case
+Web Apps	Host front-end or full-stack websites
+API Apps	REST APIs with full Swagger support
+WebJobs	Background jobs or scheduled scripts (e.g., .exe, .ps1, .sh)
+Mobile Apps	Backend for mobile apps (auth, push, data storage)
+
+💡 Benefits of Azure App Service
+Integrated deployment and management
+
+High scalability and availability
+
+Secure endpoints and traffic control
+
+No server patching or OS updates required
