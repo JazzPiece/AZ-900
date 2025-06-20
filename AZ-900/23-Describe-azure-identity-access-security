@@ -1,1 +1,264 @@
 
+Microsoft Entra ID (formerly Azure AD)
+Cloud-based identity and access management (IAM) service.
+
+Used to sign in to Microsoft 365, Azure, Dynamics, and custom apps.
+
+Supports authentication, single sign-on (SSO), app and device management.
+
+Helps protect logins with features like smart lockout, MFA, and self-service password reset.
+
+Microsoft Entra Connect
+Tool that synchronizes identities between on-premises Active Directory and Microsoft Entra ID.
+
+Enables consistent identity management across environments.
+
+Microsoft Entra Domain Services
+Provides domain join, group policy, LDAP, and Kerberos without managing domain controllers.
+
+Ideal for legacy apps that require domain services.
+
+Uses one-way sync from Microsoft Entra ID (cloud) to Entra Domain Services (not back).
+
+Who Uses Entra ID?
+IT Admins: control access to apps/resources.
+
+App Developers: enable sign-in features like SSO.
+
+Users: manage their identities.
+
+Microsoft service users: automatically authenticate using Entra ID.
+
+1. Single Sign-On (SSO)
+Sign in once to access multiple apps.
+
+Simplifies identity management for users and admins.
+
+Reduces password fatigue and chances of overlooked access after role changes.
+
+2. Multifactor Authentication (MFA)
+Adds a second layer of identity verification:
+
+Something you know (e.g. password)
+
+Something you have (e.g. phone, hardware token)
+
+Something you are (e.g. fingerprint, face)
+
+Makes stolen credentials less useful to attackers.
+
+3. Microsoft Entra MFA
+Microsoft’s service that lets users choose MFA methods (phone call, app notification, etc.)
+
+Integrated with Microsoft Entra ID.
+
+4. Passwordless Authentication
+Removes passwords completely; relies on:
+
+Something you have (your device)
+
+Plus something you are (biometric) or know (PIN)
+
+Three supported methods:
+
+Windows Hello for Business: tied to your Windows PC with biometric or PIN.
+
+Microsoft Authenticator App: approve sign-ins with phone biometrics or PIN.
+
+FIDO2 Security Keys: physical hardware key (USB, NFC, Bluetooth).
+
+What’s an external identity?
+An external identity is a user or entity outside your organization (e.g. partner, supplier, customer) who needs access to your apps or resources.
+
+Key types of external identity solutions:
+Microsoft Entra B2B (Business-to-Business) Collaboration
+
+Lets external users sign in with their own credentials (work, school, or social accounts)
+
+They’re added to your directory as guest users
+
+You control their access through Entra ID
+
+B2B Direct Connect
+
+Creates mutual trust between organizations
+
+External users stay in their own Teams environment
+
+Great for shared Teams channels
+
+Users are not added to your directory
+
+Azure AD B2C (Business-to-Consumer)
+
+For developers building public-facing apps
+
+Manages customer identities (sign in with Facebook, Google, etc.)
+
+Supports features like custom sign-in UI, MFA, and more
+
+Why use external identities?
+Share securely across companies or with end users
+
+Let people use accounts they already have
+
+Stay in control of your apps and resources
+
+Run access reviews to ensure guests still need access
+
+What is Conditional Access?
+It’s a feature in Microsoft Entra ID (formerly Azure AD) that decides when and how users can access resources based on certain signals.
+
+How it works:
+Collect signals — Who is signing in, from where, on what device, to which app.
+
+Make decisions — Allow, block, or require more authentication (like MFA).
+
+Enforce policies — Based on the decision, apply the rule (e.g., allow access only if using a trusted device).
+
+Example:
+At home on a personal device? → Require MFA
+
+At work on a trusted PC? → No extra challenge
+
+From another country? → Block access
+
+When to use it:
+Require MFA only for certain users or locations
+
+Allow only approved apps to access company data
+
+Allow access only from secure, managed devices
+
+Block access from unknown IPs or risky locations
+
+What is Azure RBAC?
+A system that controls who can do what in your Azure environment, based on roles assigned at different scopes.
+
+Why it matters:
+Enforces least privilege (only give people the access they need)
+
+Prevents mistakes or abuse by limiting permissions
+
+Makes it easier to manage permissions for teams
+
+Key parts:
+Roles: define a set of permissions (e.g., Reader, Contributor, Owner)
+
+Scope: where the role applies (management group, subscription, resource group, or individual resource)
+
+Example:
+You assign:
+
+Owner to someone at the subscription level → they manage everything inside.
+
+Reader to a team at the resource group level → they can view but not change resources in that group.
+
+How it works:
+You use Azure Portal, CLI, or PowerShell to assign roles.
+
+Permissions are inherited down the hierarchy.
+
+Enforced via Azure Resource Manager for any management actions (but not at app/data level).
+
+What is Zero Trust?
+It’s a security approach that assumes no one is trusted by default, even if they’re inside your network.
+
+Key principles:
+Verify explicitly – always check user identity, device health, location, and access context before allowing access
+
+Use least privilege – give only the minimum access needed for tasks
+
+Assume breach – plan as if attackers are already in your system and limit damage
+
+Why it matters:
+In modern environments with mobile users and cloud services, perimeter-based security isn’t enough. Zero Trust protects resources everywhere—not just inside your firewall.
+
+What is defense-in-depth?
+It’s a layered security strategy that assumes one defense might fail, so multiple layers are used to slow attackers and protect your data.
+
+Layers (from outermost to innermost):
+Physical – secure datacenters (locks, guards, etc.)
+
+Identity & access – control who can log in (MFA, RBAC)
+
+Perimeter – block large-scale attacks (like DDoS)
+
+Network – restrict traffic between services (NSGs, firewalls)
+
+Compute – secure VMs (antivirus, patches)
+
+Application – write secure code, manage secrets safely
+
+Data – encrypt and protect your actual business/customer data
+
+Microsoft Defender for Cloud:
+
+💡 What is it?
+A security management and threat protection tool for your cloud and hybrid environments (Azure, on-premises, AWS, GCP).
+
+🧭 Core Capabilities
+1. Assess
+Continuously evaluates security posture.
+
+Runs vulnerability assessments (VMs, SQL, containers).
+
+Provides a Secure Score to prioritize actions.
+
+2. Secure
+Enforces policies based on Azure Security Benchmark.
+
+Identifies misconfigured resources.
+
+Helps harden workloads with built-in best practices.
+
+3. Defend
+Detects threats in real-time.
+
+Sends alerts with remediation steps.
+
+Supports automation with Logic Apps.
+
+Includes advanced threat protection like:
+
+Just-in-time VM access
+
+Adaptive application controls
+
+Threat detection for SQL, storage, containers, etc.
+
+🌐 Multicloud & Hybrid Ready
+Azure-native integration (no setup needed).
+
+On-premises/hybrid support via Azure Arc.
+
+AWS/GCP support with CSPM (Cloud Security Posture Management) and threat detection.
+
+🔐 Use Case Examples
+Enforce MFA across teams.
+
+Detect unusual login behavior.
+
+Identify vulnerable VMs or storage blobs.
+
+Protect SQL databases from injection attacks.
+
+1. Which Microsoft Entra tool can vary the credentials needed to log in based on signals, such as where the user is located?
+✅ Correct Answer: Conditional Access
+Explanation:
+Conditional Access uses identity signals like user location, device state, or role to decide whether to allow, block, or require stronger authentication (like MFA).
+
+2. Which security model assumes the worst-case security scenario, and protects resources accordingly?
+✅ Correct Answer: Zero Trust
+Explanation:
+Zero Trust assumes breach and verifies every access request explicitly—no implicit trust based on location or device.
+
+3. A user is simultaneously assigned multiple roles that use role-based access control. What are their actual permissions?
+Role 1: Read
+Role 2: Write
+Role 3: Read and Write
+✅ Correct Answer: Read and write
+Explanation:
+Azure RBAC uses an "allow model", meaning the user gets the union of all permissions across assigned roles. So if any role grants write access, they have it.
+
+
